@@ -1,0 +1,30 @@
+[
+  {
+    "q": "你的求职方向是什么？",
+    "a": "AI Agent 运行时 / RAG 知识库工程 / 偏 AI 应用的后端方向。专注可审计、可降级的智能问答系统，关注 Agent Workflow 与 Context Engineering。"
+  },
+  {
+    "q": "完整简历在哪里下载？",
+    "a": "本站不提供简历 PDF 下载。请在 Boss 直聘查看并下载完整简历；本站侧重项目证据与 AI 可追问分身。"
+  },
+  {
+    "q": "AI 分身的回答可信吗？",
+    "a": "AI 只基于人工审核且标记为可公开的资料回答；资料不足会明确拒答，不编造个人事实。"
+  },
+  {
+    "q": "为什么需要邀请码？",
+    "a": "控制 LLM 调用成本与滥用风险，同时限制未授权高频提问。日配额 30 次，输入限制 800 字符。"
+  },
+  {
+    "q": "NovaMind 项目的核心架构是什么？",
+    "a": "NovaMind 采用异步状态机 Agent 循环（3 个并发协程），支持多 Provider LLM（OpenAI/Anthropic），具备零信任审计（JSONL）、沙箱化工具执行与动态技能发现（MCP 适配器）。"
+  },
+  {
+    "q": "Notebook 项目的 Agentic RAG 流水线如何工作？",
+    "a": "Notebook 采用 Planner→Retriever→Evidence Grader→Citation Manager 流水线。Planner 决定检索策略，Retriever 执行检索，Evidence Grader 评分筛选，Citation Manager 保证引用准确性。支持 SSE 流式输出与 Celery 异步文档索引。"
+  },
+  {
+    "q": "你如何处理不同 LLM Provider 的 API 差异？",
+    "a": "通过抽象 LLMProvider Protocol 统一接口，支持 OpenAI、Anthropic、Ollama、DashScope 等。实现 Provider 间故障转移（failover），模型不可用时自动降级到 FAQ 或资料摘录。"
+  }
+]

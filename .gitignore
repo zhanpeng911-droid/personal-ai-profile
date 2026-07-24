@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.env.local
+.DS_Store
+*.log
+.turbo/
+
+# 调试脚本（含硬编码 API key，绝不提交）
+api/_*.py
+
+# 测试产物
+api/test_cookie*.txt
+api/stream_dump.txt

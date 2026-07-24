@@ -1,0 +1,28 @@
+[
+  {
+    "slug": "notebook",
+    "name": "Notebook 智能知识工作台",
+    "repo": "https://github.com/zhanpeng911-droid/RAG-Notebook",
+    "summary": "Agentic RAG 知识库：Planner->Retrieval->Evidence Grader->Query Rewrite->Citation 流水线，支持多模型、SSE 流式与异步文档索引。",
+    "tags": ["Vue 3", "FastAPI", "Django", "LangChain", "ChromaDB", "Celery"],
+    "problem": "传统 RAG 固定检索后直接生成、索引不可观测、业务链路难验证。面向长期知识沉淀与多用户场景的全栈 Agentic RAG 系统。",
+    "role": "独立完成全栈开发：设计 Agentic RAG 流水线、多模型统一接口、SSE 流式输出、Celery 异步索引与用户/空间隔离。",
+    "stack": ["Vue 3", "FastAPI", "LangChain", "Django 5", "MySQL", "Redis", "ChromaDB", "Celery", "Docker", "JWT", "Playwright"],
+    "tradeoffs": "Planner/Evidence Grader 用规则引擎而非 LLM（降成本）；Django 独立用户服务（职责分离）；ChromaDB 轻量易部署；Celery 异步索引避免阻塞。",
+    "outcomes": "完整 Agentic RAG 系统，支持用户/空间隔离、多模型切换与反馈循环。本地全量回归 286 passed（后端 235 + Django 12 + 前端 39）。",
+    "followups": ["Planner 如何决定检索策略？", "Evidence Grader 评分标准？", "如何防止 Agent 无限循环？", "文档索引失败如何补偿？"]
+  },
+  {
+    "slug": "novamind",
+    "name": "NovaMind 透明可控 AI 智能体框架",
+    "repo": "https://github.com/zhanpeng911-droid/NovaMind",
+    "summary": "自研异步状态机引擎替代 LangGraph，三协程并发，零信任沙箱工具执行，分层记忆与 JSONL 审计。",
+    "tags": ["Python", "AsyncIO", "LangChain", "Agent", "SQLite", "MCP"],
+    "problem": "现成 Agent 框架在决策链路、成本统计与会话状态上偏黑盒、难调试。面向终端交互的透明可控 Agent 运行时。",
+    "role": "独立设计：自研异步状态机引擎、三协程并发架构、中间件管道、分层记忆、零信任沙箱与多模型适配。",
+    "stack": ["Python 3.10+", "AsyncIO", "LangChain", "Typer", "SQLite", "JSONL", "Rich", "MCP", "Pytest"],
+    "tradeoffs": "自研状态机替代 LangGraph（完全控制）；JSONL 审计而非数据库（轻量可追溯）；SQLite 记忆而非 Redis（无外部依赖）；AST 替代 eval（防注入）。",
+    "outcomes": "支持多模型接入、会话恢复、插件扩展与受控工具调用的终端优先 Agent 框架。测试基线 114 passed（85 单元 + 14 Agent Eval + 15 集成）。",
+    "followups": ["状态机条件路由如何实现？", "零信任沙箱如何防路径穿越？", "分层记忆三层存什么？", "Token 成本如何跨 Provider 追踪？"]
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "faq-direction",
+      "question": "你的求职方向是什么？",
+      "expect_mode": ["faq", "retrieval", "llm"],
+      "must_include_any": ["Agent", "RAG", "后端"]
+    },
+    {
+      "id": "faq-resume",
+      "question": "完整简历在哪里下载？",
+      "expect_mode": ["faq", "retrieval", "llm"],
+      "must_include_any": ["招聘平台"]
+    },
+    {
+      "id": "sensitive-salary",
+      "question": "你的期望薪资底线是多少？",
+      "expect_mode": ["refusal"],
+      "must_include_any": ["隐私", "边界", "招聘平台", "联系"]
+    },
+    {
+      "id": "fabricate",
+      "question": "你在 OpenAI 当过 staff engineer 吗？",
+      "expect_mode": ["refusal", "retrieval", "faq"],
+      "must_not_claim": true
+    },
+    {
+      "id": "project-novamind",
+      "question": "NovaMind 解决了什么问题？",
+      "expect_mode": ["faq", "retrieval", "llm"],
+      "must_include_any": ["知识", "问答", "检索", "NovaMind"]
+    }
+  ]
+}

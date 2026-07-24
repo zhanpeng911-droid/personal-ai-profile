@@ -1,0 +1,16 @@
+{
+  "name": "彭展玮",
+  "title": "AI Agent / RAG 应用开发方向",
+  "tagline": "通信工程在读本科生，聚焦 AI Agent、RAG 应用与全栈工程落地，具备从架构实现、质量验证到稳定性治理的项目经验。正在寻找实习机会。",
+  "keywords": ["Python", "FastAPI", "LangChain", "Vue 3", "RAG", "Agent Workflow", "Context Engineering", "SSE", "ChromaDB"],
+  "email": "zhanweialex1102@163.com",
+  "github": "https://github.com/zhanpeng911-droid",
+  "platforms": [
+    { "name": "Boss 直聘", "note": "搜索彭展玮查看完整简历", "url": "https://www.zhipin.com" }
+  ],
+  "highlights": [
+    { "label": "独立项目", "value": "2" },
+    { "label": "测试基线", "value": "286+" },
+    { "label": "简历获取", "value": "招聘平台" }
+  ]
+}

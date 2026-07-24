@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "documents": [
+    { "id": "profile-basic", "path": "profile/basic_info.md", "kind": "profile", "slug": "basic" },
+    { "id": "profile-education", "path": "profile/education.md", "kind": "profile", "slug": "education" },
+    { "id": "profile-career-goal", "path": "profile/career_goal.md", "kind": "profile", "slug": "career-goal" },
+    { "id": "project-novamind", "path": "projects/novamind.md", "kind": "project", "slug": "novamind" },
+    { "id": "project-notebook", "path": "projects/agentic_rag.md", "kind": "project", "slug": "notebook" },
+    { "id": "skill-python", "path": "skills/python.md", "kind": "skill", "slug": "python" },
+    { "id": "skill-rag", "path": "skills/rag.md", "kind": "skill", "slug": "rag" },
+    { "id": "skill-agent", "path": "skills/agent_architecture.md", "kind": "skill", "slug": "agent-architecture" },
+    { "id": "interview-faq", "path": "interview/faq.md", "kind": "faq", "slug": "faq" },
+    { "id": "interview-project-questions", "path": "interview/project_questions.md", "kind": "interview", "slug": "project-questions" },
+    { "id": "interview-strengths", "path": "interview/strengths.md", "kind": "interview", "slug": "strengths" },
+    { "id": "interview-boundaries", "path": "interview/boundaries.md", "kind": "interview", "slug": "boundaries" },
+    { "id": "interview-deep-questions", "path": "interview/deep_questions.md", "kind": "interview", "slug": "deep-questions" }
+  ]
+}
