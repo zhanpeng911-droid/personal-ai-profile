@@ -77,8 +77,13 @@ export default async function ProjectDetailPage({ params }: Props) {
         </div>
       </Reveal>
 
-      {/* 三栏布局:左图固定 + 中内容 + 右 TOC */}
-      <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10 xl:grid-cols-[0.7fr_1.3fr_180px] xl:gap-12">
+      {/* 浮动 TOC 目录导航 - 固定在页面最右边，不挤压内容 */}
+      <div className="fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 2xl:block">
+        <TableOfContents items={tocItems} />
+      </div>
+
+      {/* 两栏布局:左图固定 + 右内容 */}
+      <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
         {/* 左:项目截图 - sticky 固定不动 */}
         {hasImages && (
           <div className="lg:sticky lg:top-20 lg:self-start">
@@ -93,7 +98,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           </div>
         )}
 
-        {/* 中:架构图 + sections + 问答 */}
+        {/* 右:架构图 + sections + 问答 */}
         <div className="space-y-6">
           <div id="architecture" className="scroll-mt-20">
             <ProjectDiagram type={slug as "novamind" | "notebook"} />
@@ -126,11 +131,6 @@ export default async function ProjectDetailPage({ params }: Props) {
               向 AI 分身提问
             </Link>
           </Reveal>
-        </div>
-
-        {/* 右:TOC 目录导航 - sticky */}
-        <div className="hidden xl:sticky xl:top-20 xl:block xl:self-start">
-          <TableOfContents items={tocItems} />
         </div>
       </div>
     </article>

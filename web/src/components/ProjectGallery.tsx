@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { ChevronLeft, ChevronRight, ImageIcon, X, ZoomIn } from "lucide-react";
+import { ChevronLeft, ChevronRight, ImageIcon } from "lucide-react";
 
 export type GalleryImage = {
   src: string;
@@ -21,7 +21,6 @@ type Props = {
 
 export function ProjectGallery({ images, alt, aspect = "16/9", objectFit = "contain", sticky = false }: Props) {
   const [active, setActive] = useState(0);
-  const [lightbox, setLightbox] = useState(false);
   const total = images.length;
 
   const go = useCallback(
@@ -40,22 +39,6 @@ export function ProjectGallery({ images, alt, aspect = "16/9", objectFit = "cont
     }, 5000);
     return () => clearInterval(timer);
   }, [paused, total]);
-
-  // lightbox 打开时锁滚动 + ESC 关闭
-  useEffect(() => {
-    if (!lightbox) return;
-    document.body.style.overflow = "hidden";
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setLightbox(false);
-      if (e.key === "ArrowLeft") go(active - 1);
-      if (e.key === "ArrowRight") go(active + 1);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [lightbox, active, go]);
 
   // 键盘可访问：左右切换
   function onKeyDown(e: React.KeyboardEvent) {
@@ -108,24 +91,13 @@ export function ProjectGallery({ images, alt, aspect = "16/9", objectFit = "cont
             style={{ opacity: i === active ? 1 : 0 }}
             aria-hidden={i !== active}
           >
-            <button
-              type="button"
-              onClick={() => { setActive(i); setLightbox(true); }}
-              className="group/zoom h-full w-full cursor-zoom-in"
-              aria-label="点击放大查看"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={img.src}
-                alt={img.caption ? `${alt} - ${img.caption}` : alt}
-                className={`h-full w-full ${fitClass}`}
-                loading={i === 0 ? "eager" : "lazy"}
-              />
-            </button>
-            {/* 放大提示角标 */}
-            <div className="pointer-events-none absolute right-3 bottom-3 flex h-7 w-7 items-center justify-center rounded-full border border-white/40 bg-ink-900/40 text-white/80 backdrop-blur-md opacity-0 transition-opacity group-hover:opacity-100">
-              <ZoomIn size={12} />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={img.src}
+              alt={img.caption ? `${alt} - ${img.caption}` : alt}
+              className={`h-full w-full ${fitClass}`}
+              loading={i === 0 ? "eager" : "lazy"}
+            />
             {/* 底部渐变 + caption */}
             {img.caption && (
               <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/70 to-transparent px-4 pb-3 pt-8">
@@ -182,62 +154,6 @@ export function ProjectGallery({ images, alt, aspect = "16/9", objectFit = "cont
               aria-current={i === active}
             />
           ))}
-        </div>
-      )}
-
-      {/* Lightbox - 点击放大全屏查看 */}
-      {lightbox && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/90 backdrop-blur-md"
-          onClick={() => setLightbox(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${alt} 大图查看`}
-        >
-          {/* 关闭按钮 */}
-          <button
-            type="button"
-            onClick={() => setLightbox(false)}
-            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white/90 backdrop-blur-md transition-all hover:bg-white/20"
-            aria-label="关闭"
-          >
-            <X size={18} />
-          </button>
-
-          {/* 大图 */}
-          <div className="relative max-h-[90vh] max-w-[90vw]" onClick={(e) => e.stopPropagation()}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={images[active].src}
-              alt={images[active].caption ? `${alt} - ${images[active].caption}` : alt}
-              className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain"
-            />
-            {images[active].caption && (
-              <p className="mt-3 text-center font-mono text-xs text-white/80">{images[active].caption}</p>
-            )}
-          </div>
-
-          {/* 左右切换 */}
-          {total > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); go(active - 1); }}
-                className="absolute left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white/90 backdrop-blur-md transition-all hover:bg-white/20"
-                aria-label="上一张"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); go(active + 1); }}
-                className="absolute right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white/90 backdrop-blur-md transition-all hover:bg-white/20"
-                aria-label="下一张"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </>
-          )}
         </div>
       )}
     </div>

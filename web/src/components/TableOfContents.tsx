@@ -38,7 +38,10 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
   }
 
   return (
-    <nav className="hidden xl:block" aria-label="页面目录">
+    <nav
+      className="rounded-xl border border-white/40 bg-white/30 p-4 shadow-soft-lg backdrop-blur-md"
+      aria-label="页面目录"
+    >
       <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-ink-400">
         目录 · Contents
       </p>
