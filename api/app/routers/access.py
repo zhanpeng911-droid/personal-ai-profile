@@ -99,13 +99,33 @@ def verify_access(
 @router.get("/me", response_model=AccessMeResponse)
 def access_me(
     request: Request,
+    response: Response,
     settings: Settings = Depends(get_settings),
     sessions: SessionManager = Depends(get_session_manager),
 ) -> AccessMeResponse:
     token = request.cookies.get(settings.cookie_name)
     payload = sessions.parse(token)
+    # 无有效会话 -> 自动签发匿名会话（去掉邀请码后，任何人可直接对话）
     if payload is None:
-        return AccessMeResponse(authenticated=False)
+        invite_id = "anon"
+        daily_limit = settings.daily_default_limit
+        new_token = sessions.issue(invite_id=invite_id, daily_limit=daily_limit)
+        response.set_cookie(
+            key=settings.cookie_name,
+            value=new_token,
+            httponly=True,
+            secure=settings.cookie_secure or settings.is_production,
+            samesite="lax",
+            max_age=settings.session_ttl_hours * 3600,
+            path="/",
+        )
+        remaining = limiter.remaining(invite_id, daily_limit)
+        return AccessMeResponse(
+            authenticated=True,
+            remaining_questions=remaining,
+            daily_limit=daily_limit,
+            invite_id=invite_id,
+        )
     remaining = limiter.remaining(payload.invite_id, payload.daily_limit)
     return AccessMeResponse(
         authenticated=True,

@@ -56,7 +56,7 @@ export function ChatPanel() {
       .then((me) => {
         if (cancelled) return;
         if (!me.authenticated) {
-          router.replace("/access");
+          router.replace("/ask");
           return;
         }
         setRemaining(me.remaining_questions ?? null);
@@ -157,7 +157,7 @@ export function ChatPanel() {
       const msg = err instanceof Error ? err.message : "请求失败";
       setError(msg);
       if (msg.includes("401") || msg === "unauthorized") {
-        router.replace("/access");
+        router.replace("/ask");
       }
       setMessages((prev) => {
         const last = prev[prev.length - 1];
@@ -184,7 +184,7 @@ export function ChatPanel() {
         <button
           type="button"
           onClick={() => window.location.reload()}
-          className="inline-flex items-center gap-2 rounded-xl bg-clay px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-clay-dark"
+          className="glass-btn-primary px-5 py-2.5"
         >
           <RotateCcw size={14} />
           重新加载
@@ -209,9 +209,9 @@ export function ChatPanel() {
   const lowQuota = remaining !== null && remaining <= 5;
 
   return (
-    <div className="flex h-[calc(100dvh-12rem)] flex-col overflow-hidden rounded-2xl border border-paper-200 bg-card shadow-soft-lg">
+    <div className="flex h-[calc(100dvh-12rem)] flex-col overflow-hidden rounded-2xl border border-white/40 bg-white/40 shadow-soft-lg backdrop-blur-xl">
       {/* 顶栏 - 固定不滚动 */}
-      <div className="flex shrink-0 items-center justify-between border-b border-paper-200 bg-paper-50/80 px-4 py-3 backdrop-blur sm:px-6">
+      <div className="flex shrink-0 items-center justify-between border-b border-white/30 bg-white/20 px-4 py-3 backdrop-blur-md sm:px-6">
         <div className="flex items-center gap-2.5">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-clay/10 text-clay">
             <Bot size={18} />
@@ -248,8 +248,8 @@ export function ChatPanel() {
               className={cn(
                 "max-w-[88%] rounded-2xl px-4 py-3 sm:max-w-[80%]",
                 m.role === "user"
-                  ? "rounded-br-sm bg-clay text-white"
-                  : "rounded-bl-sm border border-paper-200 bg-paper-50 text-ink-900"
+                  ? "rounded-br-sm border border-clay/30 bg-clay/20 text-clay-dark backdrop-blur-md"
+                  : "rounded-bl-sm border border-white/50 bg-white/30 text-ink-900 backdrop-blur-md"
               )}
             >
               {m.role === "assistant" ? (
@@ -277,7 +277,7 @@ export function ChatPanel() {
                       key={q}
                       type="button"
                       onClick={() => ask(q)}
-                      className="rounded-full border border-paper-200 bg-white px-3 py-1.5 text-xs text-ink-700 transition-all hover:border-clay/30 hover:bg-clay/5 hover:text-clay-dark"
+                      className="rounded-full glass-tag px-3 py-1.5 text-xs text-ink-700 transition-all hover:border-clay/30 hover:bg-clay/5 hover:text-clay-dark"
                     >
                       {q}
                     </button>
@@ -295,7 +295,7 @@ export function ChatPanel() {
           if (!waiting) return null;
           return (
             <div className="flex justify-start">
-              <div className="flex items-center gap-2 rounded-2xl rounded-bl-sm border border-paper-200 bg-paper-50 px-4 py-3">
+              <div className="flex items-center gap-2 rounded-2xl rounded-bl-sm border border-white/50 bg-white/30 px-4 py-3 backdrop-blur-md">
                 <span className="flex gap-1.5">
                   <span className="h-2 w-2 rounded-full bg-clay animate-pulse-dot" style={{ animationDelay: "0ms" }} />
                   <span className="h-2 w-2 rounded-full bg-clay animate-pulse-dot" style={{ animationDelay: "200ms" }} />
@@ -316,14 +316,14 @@ export function ChatPanel() {
       )}
 
       {/* 输入区 - 固定不滚动 */}
-      <div className="shrink-0 border-t border-paper-200 bg-card px-4 py-4 sm:px-6">
+      <div className="shrink-0 border-t border-white/30 bg-white/20 px-4 py-4 backdrop-blur-md sm:px-6">
         <div className="mb-3 flex flex-wrap gap-2">
           {STARTERS.map((s) => (
             <button
               key={s}
               type="button"
               onClick={() => ask(s)}
-              className="inline-flex items-center gap-1.5 rounded-full border border-paper-200 bg-white px-3 py-1.5 text-xs text-ink-700 transition-all hover:border-clay/30 hover:bg-clay/5 hover:text-clay-dark"
+              className="inline-flex items-center gap-1.5 rounded-full glass-tag px-3 py-1.5 text-xs text-ink-700 transition-all hover:border-clay/30 hover:bg-clay/5 hover:text-clay-dark"
             >
               <Sparkles size={12} className="text-clay/60" />
               {s}
@@ -354,13 +354,13 @@ export function ChatPanel() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="输入与候选人经历相关的问题…"
-            className="min-h-11 flex-1 rounded-xl border border-paper-200 bg-paper-50 px-4 text-sm text-ink-900 outline-none transition-all placeholder:text-ink-400 focus:border-clay/40 focus:ring-2 focus:ring-clay/15"
+            className="min-h-11 flex-1 rounded-xl border border-white/50 bg-white/30 px-4 text-sm text-ink-900 outline-none backdrop-blur-sm transition-all placeholder:text-ink-400 focus:border-clay/40 focus:bg-white/40 focus:ring-2 focus:ring-clay/15"
             maxLength={800}
           />
           <button
             type="submit"
             disabled={loading || !input.trim()}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-clay px-5 text-sm font-medium text-white transition-all hover:bg-clay-dark disabled:opacity-40 disabled:cursor-not-allowed"
+            className="glass-btn-primary h-11 px-5 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Send size={16} />
             发送

@@ -3,6 +3,8 @@
     "slug": "notebook",
     "name": "Notebook 智能知识工作台",
     "repo": "https://github.com/zhanpeng911-droid/RAG-Notebook",
+    "image": "",
+    "images": [],
     "summary": "Agentic RAG 知识库：Planner->Retrieval->Evidence Grader->Query Rewrite->Citation 流水线，支持多模型、SSE 流式与异步文档索引。",
     "tags": ["Vue 3", "FastAPI", "Django", "LangChain", "ChromaDB", "Celery"],
     "problem": "传统 RAG 固定检索后直接生成、索引不可观测、业务链路难验证。面向长期知识沉淀与多用户场景的全栈 Agentic RAG 系统。",
@@ -16,6 +18,11 @@
     "slug": "novamind",
     "name": "NovaMind 透明可控 AI 智能体框架",
     "repo": "https://github.com/zhanpeng911-droid/NovaMind",
+    "image": "",
+    "images": [
+      { "src": "/images/novamind-1.png", "caption": "novamind run · 三协程交互对话" },
+      { "src": "/images/novamind-2.png", "caption": "novamind monitor · JSONL 事件流可观测" }
+    ],
     "summary": "自研异步状态机引擎替代 LangGraph，三协程并发，零信任沙箱工具执行，分层记忆与 JSONL 审计。",
     "tags": ["Python", "AsyncIO", "LangChain", "Agent", "SQLite", "MCP"],
     "problem": "现成 Agent 框架在决策链路、成本统计与会话状态上偏黑盒、难调试。面向终端交互的透明可控 Agent 运行时。",

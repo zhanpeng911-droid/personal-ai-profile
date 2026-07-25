@@ -7,11 +7,12 @@ import { Menu, X, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
+  { href: "/", label: "首页" },
   { href: "/about", label: "关于" },
   { href: "/projects", label: "项目" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "联系" },
-  { href: "/access", label: "AI 分身" },
+  { href: "/ask", label: "AI 分身" },
 ];
 
 export function SiteHeader() {
@@ -30,7 +31,7 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-paper-200 bg-paper-50/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-white/40 bg-white/15 shadow-[0_4px_30px_rgba(0,0,0,0.04)] backdrop-blur-2xl">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link href="/" className="group flex items-center gap-2">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-clay text-white transition-transform group-hover:scale-105">
@@ -66,8 +67,8 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/access"
-            className="hidden h-9 items-center gap-1.5 rounded-lg bg-clay px-4 text-xs font-medium text-white transition-all hover:bg-clay-dark sm:inline-flex sm:text-sm"
+            href="/ask"
+            className="hidden h-9 sm:inline-flex glass-btn-sm sm:text-sm"
           >
             <MessageSquare size={14} />
             与 AI 交流
@@ -76,7 +77,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-paper-200 bg-white text-ink-900 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/50 bg-white/30 text-ink-900 backdrop-blur-md md:hidden"
             aria-label={open ? "关闭菜单" : "打开菜单"}
             aria-expanded={open}
           >
@@ -88,7 +89,7 @@ export function SiteHeader() {
       {/* 移动端下拉菜单 */}
       <div
         className={cn(
-          "overflow-hidden border-t border-paper-200 bg-paper-50/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden",
+          "overflow-hidden border-t border-white/40 bg-white/15 backdrop-blur-2xl transition-[max-height,opacity] duration-300 md:hidden",
           open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         )}
       >
@@ -111,8 +112,8 @@ export function SiteHeader() {
             );
           })}
           <Link
-            href="/access"
-            className="mt-2 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-clay text-sm font-medium text-white"
+            href="/ask"
+            className="mt-2 inline-flex h-11 items-center justify-center gap-2 glass-btn-primary"
           >
             <MessageSquare size={16} />
             与 AI 交流

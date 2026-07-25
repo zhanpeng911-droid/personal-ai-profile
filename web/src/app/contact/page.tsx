@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { FileText, Mail, ArrowUpRight, Code2 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import site from "@/content/site.json";
@@ -10,19 +10,20 @@ export default function ContactPage() {
     <div className="mx-auto max-w-3xl space-y-8">
       <Reveal>
         <p className="font-mono text-xs uppercase tracking-wider text-clay-dark">Contact</p>
-        <h1 className="mt-2 font-display text-3xl font-bold text-ink-900">联系与简历</h1>
-        <p className="mt-3 text-ink-700">
+        <h1 className="mt-2 font-display text-4xl font-bold text-ink-900 sm:text-5xl">联系与简历</h1>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-700 sm:text-base">
           本站<strong className="text-ink-900">不提供简历 PDF 下载</strong>
-          。完整简历请在招聘平台获取；此处仅放公开联系方式与说明。
+          。完整简历请在 Boss 直聘获取；此处仅放公开联系方式与说明。
         </p>
       </Reveal>
 
-      <Reveal delay={80} as="section" id="resume-on-platforms" className="rounded-2xl border border-paper-200 bg-card p-6 shadow-card">
+      {/* 简历平台 - 玻璃拟态 */}
+      <Reveal delay={80} as="section" id="resume-on-platforms" className="relative glass p-6">
         <div className="flex items-center gap-2.5">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gold/10 text-gold">
             <FileText size={16} />
           </span>
-          <h2 className="font-display text-lg font-semibold text-ink-900">完整简历：请在招聘平台下载</h2>
+          <h2 className="font-display text-lg font-semibold text-ink-900">完整简历：Boss 直聘</h2>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-ink-700">
           为避免多处维护版本不一致，站点专注展示项目证据与 AI 可追问分身。请在你收到投递或沟通的招聘平台下载最新简历。
@@ -34,7 +35,7 @@ export default function ContactPage() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between rounded-xl border border-paper-200 bg-paper-50 px-4 py-3 transition-all hover:border-clay/30 hover:bg-clay/5"
+                className="group flex items-center justify-between rounded-xl glass-tag px-4 py-3 transition-all hover:border-clay/30 hover:bg-clay/5"
               >
                 <div>
                   <div className="font-medium text-ink-900">{p.name}</div>
@@ -47,7 +48,8 @@ export default function ContactPage() {
         </ul>
       </Reveal>
 
-      <Reveal delay={160} as="section" className="rounded-2xl border border-paper-200 bg-card p-6 shadow-card">
+      {/* 公开联系方式 - 玻璃拟态 */}
+      <Reveal delay={160} as="section" className="relative glass p-6">
         <div className="flex items-center gap-2.5">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-clay/10 text-clay">
             <Mail size={16} />

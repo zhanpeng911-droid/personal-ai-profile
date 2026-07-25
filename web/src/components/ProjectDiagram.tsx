@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
@@ -288,7 +288,7 @@ export function ProjectDiagram({ type }: { type: DiagramType }) {
   }, []);
 
   return (
-    <Reveal as="section" className="rounded-2xl border border-paper-200 bg-card/60 p-6 shadow-card backdrop-blur-sm">
+    <Reveal as="section" className="glass p-6">
       <div ref={ref} className="mb-4 flex items-center justify-between">
         <div>
           <p className="font-mono text-xs uppercase tracking-wider text-clay-dark">Architecture</p>

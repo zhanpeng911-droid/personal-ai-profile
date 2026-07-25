@@ -8,8 +8,8 @@
     color-scheme: light;
     --radius: 0.75rem;
 
-    /* shadcn HSL 变量 - 暖白柔和 */
-    --background: 44 25% 96%;          /* #faf9f5 米白 */
+    /* shadcn HSL 变量 - 暖白柔和（调深以衬托玻璃拟态） */
+    --background: 40 20% 90%;          /* #ede9e0 暖灰白，比原来深一档 */
     --foreground: 30 6% 8%;            /* #141413 深黑 */
     --card: 0 0% 100%;                 /* #ffffff 纯白卡片 */
     --card-foreground: 30 6% 8%;
@@ -17,16 +17,16 @@
     --popover-foreground: 30 6% 8%;
     --primary: 16 62% 60%;             /* #d97757 暖橘 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 44 15% 92%;           /* #f0eee5 */
+    --secondary: 44 15% 88%;           /* 调深 */
     --secondary-foreground: 30 6% 8%;
-    --muted: 44 15% 92%;
+    --muted: 44 15% 88%;
     --muted-foreground: 40 5% 41%;     /* #6b6a63 */
     --accent: 82 22% 45%;              /* #788c5d 深绿 */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 40 12% 86%;              /* #ebe9e0 */
-    --input: 40 12% 88%;
+    --border: 40 12% 80%;              /* 调深 */
+    --input: 40 12% 82%;
     --ring: 16 62% 60%;
   }
 }
@@ -48,11 +48,11 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.3;
+    opacity: 0.35;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* 几何线条装饰 - 暖色微网格 */
+  /* 彩色光斑 - 为玻璃拟态提供背景层次（半透明卡片可透出颜色） */
   body::after {
     content: "";
     position: fixed;
@@ -60,16 +60,41 @@
     z-index: -1;
     pointer-events: none;
     background-image:
-      linear-gradient(rgba(217, 119, 87, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(217, 119, 87, 0.025) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, #000 20%, transparent 80%);
+      radial-gradient(ellipse 60% 50% at 15% 20%, rgba(217, 119, 87, 0.18), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 85% 80%, rgba(120, 140, 93, 0.15), transparent 60%),
+      radial-gradient(ellipse 40% 35% at 70% 15%, rgba(212, 167, 44, 0.12), transparent 60%),
+      linear-gradient(rgba(217, 119, 87, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(217, 119, 87, 0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 64px 64px, 64px 64px;
   }
 }
 
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 玻璃拟态卡片 - 统一全站 */
+  .glass {
+    @apply rounded-2xl border border-white/50 bg-white/40 shadow-soft-lg backdrop-blur-xl;
+  }
+  .glass-hover {
+    @apply glass transition-all duration-300 hover:bg-white/50 hover:shadow-soft-lg;
+  }
+  .glass-tag {
+    @apply rounded-md border border-white/60 bg-white/30 font-mono text-xs backdrop-blur-sm;
+  }
+  /* 玻璃按钮 - 主 CTA（半透明暖橘） */
+  .glass-btn-primary {
+    @apply inline-flex items-center gap-2 rounded-xl border border-clay/30 bg-clay/20 px-6 py-2.5 text-sm font-medium text-clay-dark backdrop-blur-md transition-all hover:bg-clay/30 hover:shadow-soft-lg;
+  }
+  /* 玻璃按钮 - 次要（半透明白） */
+  .glass-btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-xl border border-white/50 bg-white/30 px-6 py-2.5 text-sm font-medium text-ink-900 backdrop-blur-md transition-all hover:bg-white/40 hover:shadow-soft;
+  }
+  /* 玻璃按钮 - 小尺寸（导航栏等） */
+  .glass-btn-sm {
+    @apply inline-flex items-center gap-1.5 rounded-lg border border-white/50 bg-white/30 px-4 py-2 text-xs font-medium text-ink-900 backdrop-blur-md transition-all hover:bg-white/40;
   }
 
   /* 滚动条 */

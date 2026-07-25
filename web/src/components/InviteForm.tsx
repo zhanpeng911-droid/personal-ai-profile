@@ -26,7 +26,7 @@ export function InviteForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-paper-200 bg-card p-6 shadow-card">
+    <form onSubmit={onSubmit} className="glass space-y-4 p-6">
       <div>
         <label htmlFor="invite" className="text-sm text-ink-700">
           邀请码
@@ -36,7 +36,7 @@ export function InviteForm() {
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder="例如 DEMO-2026"
-          className="mt-2 w-full rounded-xl border border-paper-200 bg-paper-50 px-4 py-3 text-ink-900 outline-none transition-all placeholder:text-ink-400 focus:border-clay/40 focus:ring-2 focus:ring-clay/15"
+          className="mt-2 w-full rounded-xl border border-white/50 bg-white/30 px-4 py-3 text-ink-900 outline-none backdrop-blur-sm transition-all placeholder:text-ink-400 focus:border-clay/40 focus:bg-white/40 focus:ring-2 focus:ring-clay/15"
           autoComplete="off"
           required
         />
@@ -45,14 +45,14 @@ export function InviteForm() {
       <button
         type="submit"
         disabled={loading}
-        className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-clay text-sm font-medium text-white transition-all hover:bg-clay-dark disabled:opacity-40"
+        className="glass-btn-primary h-11 w-full justify-center disabled:opacity-40"
       >
         {loading ? "验证中…" : "进入 AI 问答"}
         {!loading && <ArrowRight size={16} />}
       </button>
       <p className="text-xs leading-relaxed text-ink-500">
-        本地演示默认邀请码：<code className="rounded bg-paper-200 px-1 py-0.5 font-mono text-clay-dark">DEMO-2026</code>
-        。完整简历请在招聘平台下载，本站不提供 PDF。
+        本地演示默认邀请码：<code className="glass-tag px-1 py-0.5 text-clay-dark">DEMO-2026</code>
+        。完整简历请在 Boss 直聘查看，本站不提供 PDF。
       </p>
     </form>
   );
